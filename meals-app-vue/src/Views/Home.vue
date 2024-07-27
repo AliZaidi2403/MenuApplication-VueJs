@@ -5,14 +5,7 @@
       class="rounded border-2 border-gray-200 w-full"
       placeholder="Search for meals..."
     />
-    <div class="flex gap-1 mt-2 justify-center">
-      <router-link
-        :to="{ name: 'byLetter', params: { letter } }"
-        v-for="letter of letters.split('')"
-      >
-        {{ letter }}
-      </router-link>
-    </div>
+
     <pre>{{ ingredients }}</pre>
   </div>
 </template>
@@ -27,5 +20,4 @@ onMounted(async () => {
   console.log(response.data);
   ingredients.value = response.data;
 });
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 </script>
