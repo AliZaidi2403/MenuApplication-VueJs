@@ -1,4 +1,7 @@
 <template>
+  <div class="p-8 pb-0">
+    <h1 class="text-4xl font-bold mb-4 text-orange-500">Meals by Letter</h1>
+  </div>
   <div>
     <div class="flex gap-1 mt-2 justify-center">
       <router-link
