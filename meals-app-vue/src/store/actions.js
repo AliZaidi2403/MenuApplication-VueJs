@@ -1,5 +1,5 @@
 import api from "./../axiosconfig";
-export async function searchMeals({ commit }, keyword) {
+export async function searchMeals(context, keyword) {
   let abortController = null;
   // Abort the previous request if it's still ongoing
   if (abortController) {
@@ -16,7 +16,7 @@ export async function searchMeals({ commit }, keyword) {
       throw new Error("Network response not ok");
     }
     const data = await response.json();
-    commit("setSearchedMeals", data.meals);
+    context.commit("setSearchedMeals", data.meals);
   } catch (err) {
     if (err.name === "AbortError") {
       console.log("Fetch aborted");
@@ -26,14 +26,14 @@ export async function searchMeals({ commit }, keyword) {
   }
 }
 
-export function searchMealsByLetter({ commit }, letter) {
+export function searchMealsByLetter(context, letter) {
   api.get(`search.php?f=${letter}`).then(({ data }) => {
-    commit("setMealsByLetter", data.meals);
+    context.commit("setMealsByLetter", data.meals);
   });
 }
 
-export function searchMealsByIngredient({ commit }, ingredient) {
+export function searchMealsByIngredient(context, ingredient) {
   api.get(`filter.php?i=${ingredient}`).then(({ data }) => {
-    commit("setMealsByIngredient", data.meals);
+    context.commit("setMealsByIngredient", data.meals);
   });
 }

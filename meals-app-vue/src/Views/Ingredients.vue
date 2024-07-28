@@ -27,7 +27,6 @@
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import api from "./../axiosconfig.js";
-import store from "./../store/index.js";
 
 const router = useRouter();
 const keyword = ref("");
