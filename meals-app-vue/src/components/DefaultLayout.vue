@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 min-h-screen">
+  <div class="bg-gray-200 min-h-screen">
     <navbar />
     <main>
       <router-view />

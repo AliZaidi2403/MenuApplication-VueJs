@@ -1,23 +1,21 @@
 <template>
-  <div class="p-8 flex flex-col">
-    <input
-      type="text"
-      class="rounded border-2 border-gray-200 w-full"
-      placeholder="Search for meals..."
-    />
-
-    <pre>{{ ingredients }}</pre>
+  <div class="p-8 pb-0 text">
+    <h1 class="text-4xl font-bold mb-4 text-gray-700">Random Meals</h1>
   </div>
+  <Meals :meals="meals" />
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
-import store from "./../store";
-import api from "./../axiosconfig";
-const ingredients = ref([]);
+import { onMounted, ref } from "vue";
+
+import Meals from "../components/Meals.vue";
+import api from "../axiosconfig.js";
+
+const meals = ref([]);
+
 onMounted(async () => {
-  const response = await api.get("/list.php?i=list");
-  console.log(response.data);
-  ingredients.value = response.data;
+  for (let i = 0; i < 10; i++) {
+    api.get(`random.php`).then(({ data }) => meals.value.push(data.meals[0]));
+  }
 });
 </script>
